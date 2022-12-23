@@ -1,0 +1,7 @@
+/**
+ * userid
+ * customercode
+ * deliveryBalance
+ * oderbalance
+ *
+ */

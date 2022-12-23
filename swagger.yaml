@@ -1,0 +1,2497 @@
+openapi: 3.0.3
+info:
+  title: FEX Cargo
+  description: "This is the **Fex Cargo API Documentation** for Frontend Developers. We love you and we don't want you struggle."
+  contact:
+    email:
+      - ilkinm2003@gmail.com
+      - farhad.aliev2020@gmail.com
+  version: 3.0.0
+servers:
+  - url: http://localhost:3001
+tags:
+  - name: Country
+    description: Everything related with Countries
+  - name: City
+    description: Everything related with Cities
+  - name: District
+    description: Everything related with District
+  - name: Flight
+    description: Everything related with Flight
+  - name: Address
+    description: Everything related with Address
+  - name: Phone
+  - name: Phone
+    description: Everything related with Phone
+  - name: Phone Country Code
+    description: Everything related with Phone Country Code
+  - name: Phone Operator Code
+    description: Everything related with Phone Operator Code
+  - name: Box
+    description: Everything related with Box
+  - name: Order
+    description: Everything related with Order
+  - name: Shop
+    description: Everything related with Shop
+  - name: Customer Balance
+    description: Everything related with Customer Balance
+  - name: Forbidden Product
+  - description: Everything related with Customer Balance
+  - name: Tariff
+    description: Everything related with Tariffs
+  - name: Role
+    description: Everything related with Roles
+  - name: Privilege
+    description: Everything related with Privileges
+paths:
+  /country:
+    post:
+      tags:
+        - Country
+      summary: Create Country
+      description: Create Country by admin
+      operationId: createCountry
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Country name
+                  example: Azerbaijan
+                alpha2code:
+                  type: string
+                  description: two-letter country codes (ISO alpha-2)
+                  example: AZ
+                alpha3code:
+                  type: string
+                  description: three letter country codes (ISO alpha-3)
+                  example: AZE
+                image:
+                  type: file
+                  description: Choose Country image
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error or Data duplicated
+    patch:
+      tags:
+        - Country
+      summary: Update Country
+      description: Update country by admin
+      operationId: updateCountry
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Country id
+                  example: 636ccec461517dc1434ad70c
+                  required: true
+                name:
+                  type: string
+                  description: Country name
+                  example: Azerbaijan
+                alpha2code:
+                  type: string
+                  description: two-letter country codes (ISO alpha-2)
+                  example: AZ
+                alpha3code:
+                  type: string
+                  description: three letter country codes (ISO alpha-3)
+                  example: AZE
+                image:
+                  type: file
+                  description: Choose Country image
+                  nullable: true
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - Country
+      summary: Get Countries
+      description: Countries list
+      operationId: getCountry
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /country/{id}:
+    delete:
+      tags:
+        - Country
+      summary: Update Country status
+      description: Update Country status by admin . It will not be visible to users from client side
+      operationId: UpdateCountry
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        503:
+          description: Service Unavailable
+    get:
+      tags:
+        - Country
+      summary: Get Country by id
+      description: Get Country by id
+      operationId: getCountry
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /city:
+    post:
+      tags:
+        - City
+      summary: Create City
+      description: Create City by admin
+      operationId: createCity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: City name
+                  example: Baku
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error or Data duplicated
+    patch:
+      tags:
+        - City
+      summary: Update City
+      description: Update city by admin
+      operationId: updateCity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: City id
+                  example: 636e00491c78c3c8bf17b449
+                  required: true
+                name:
+                  type: string
+                  description: City name
+                  example: Baku
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - City
+      summary: Get Cities
+      description: Cities list
+      operationId: getCities
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /city/{id}:
+    delete:
+      tags:
+        - City
+      summary: Update City status
+      description: Update City status by admin . It will not be visible to users from client side
+      operationId: UpdateCity
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        503:
+          description: Service Unavailable
+    get:
+      tags:
+        - City
+      summary: Get City by id
+      description: Get City by id
+      operationId: getCity
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /city/{id}/ct:
+    get:
+      tags:
+        - City
+      summary: Get City list by Country
+      description: City list by Country
+      operationId: getCity
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /address:
+    post:
+      tags:
+        - Address
+      summary: Create Address
+      description: Create Address
+      operationId: createAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                countryID:
+                  type: string
+                  description: Country id
+                  example: 636e28c50b96d852e3c9cf61
+                  required: true
+                cityID:
+                  type: string
+                  description: City id
+                  example: 636e2b6d78fd8063eff62b78
+                  required: true
+                districtID:
+                  type: string
+                  description: District id
+                  example: 636e2b6d78fd8063eff62b78
+                  required: true
+                street:
+                  type: string
+                  description: Street name
+                  example: Teymur Aliyev
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    patch:
+      tags:
+        - Address
+      summary: Update Address
+      description: Update Address
+      operationId: updateAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Address id
+                  example: 636e4e15b4fa3021e036c8f2
+                countryID:
+                  type: string
+                  description: Country id
+                  example: 636e28c50b96d852e3c9cf61
+                cityID:
+                  type: string
+                  description: City id
+                  example: 636e2b6d78fd8063eff62b78
+                districtID:
+                  type: string
+                  description: District id
+                  example: 636e2b6d78fd8063eff62b78
+                street:
+                  type: string
+                  description: Street name
+                  example: Teymur Aliyev
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - Address
+      summary: Get Addresses
+      description: Addresses list
+      operationId: getAddresses
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /address/{id}:
+    delete:
+      tags:
+        - Address
+      summary: Remove Address status
+      description: Remove Address by admin
+      operationId: removeAddress
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        503:
+          description: Service Unavailable
+    get:
+      tags:
+        - Address
+      summary: Get Address by id
+      description: Get Address by id
+      operationId: getAddress
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /address/{id}/disable:
+    patch:
+      tags:
+        - Address
+      summary: Disable Address status
+      description: Disable Address status
+      operationId: disableAddress
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /district:
+    post:
+      tags:
+        - District
+      summary: Create District
+      description: Create District by admin
+      operationId: createDistrict
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: District name
+                  example: Narimanov
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error or Data duplicated
+    patch:
+      tags:
+        - District
+      summary: Update District
+      description: Update District by admin
+      operationId: updateDistrict
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: District id
+                  example: 636e00491c78c3c8bf17b449
+                  required: true
+                name:
+                  type: string
+                  description: District name
+                  example: Nasimi
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - District
+      summary: Get Districts
+      description: Districts list
+      operationId: getDistricts
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /district/{id}:
+    delete:
+      tags:
+        - District
+      summary: Update District status
+      description: District status by admin . It will not be visible to users from client side
+      operationId: UpdateDistrict
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        503:
+          description: Service Unavailable
+    get:
+      tags:
+        - District
+      summary: Get District by id
+      description: Get District by id
+      operationId: getDistrict
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /district/{id}/ct:
+    get:
+      tags:
+        - District
+      summary: Get District list by City
+      description: District list by City
+      operationId: getDistrict
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /flight:
+    post:
+      tags:
+        - Flight
+      summary: Create a new flight
+      operationId: createFlight
+      description: An API endpoint for creating a new flight.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                from:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo ObjectID (An ID with hex format with length of 24) of the Branch where all the boxes run to flight from.
+                  required: true
+                to:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo ObjectID (An ID with hex format with length of 24) of the last destination Branch where all the boxes go to.
+                  required: true
+                flightDate:
+                  type: string
+                  format: date
+                  pattern: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+                  description: Flight start date with 'YYYY-MM-DD' format (e.g. 2003-10-31)
+                  required: true
+                landingDate:
+                  type: string
+                  format: date
+                  pattern: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+                  description: Flight end date with 'YYYY-MM-DD' format (e.g. 2022-10-31)
+                boxIDs:
+                  type: array
+                  items:
+                    type: string
+                    pattern: "[0-9a-f]{24}"
+                  description: The array of box IDs which are on the flight.
+                  minItems: 1
+                  required: true
+                totalWeight:
+                  type: string
+                  description: Total weigth of boxes on the flight.
+                  required: true
+                  example: "12"
+                isCompleted:
+                  type: boolean
+                  description: Is flight completed. true or false.
+                  required: false
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    get:
+      tags:
+        - Flight
+      summary: Get all flights.
+      operationId: getFlights
+      description: An API endpoint for getting all flight.
+      responses:
+        200:
+          description: Created
+        500:
+          description: Server Error
+  patch:
+    tags:
+      - Flight
+    summary: Update a flight
+    operationId: updateFlight
+    description: An API endpoint for updating a flight.
+    requestBody:
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+                pattern: "[0-9a-f]{24}"
+                description: The Mongo ObjectID of the flight you want to update
+                required: true
+              from:
+                type: string
+                pattern: "[0-9a-f]{24}"
+                description: The Mongo ObjectID (An ID with hex format with length of 24) of the Branch where all the boxes run to flight from.
+              to:
+                type: string
+                pattern: "[0-9a-f]{24}"
+                description: The Mongo ObjectID (An ID with hex format with length of 24) of the last destination Branch where all the boxes go to.
+              flightDate:
+                type: string
+                format: date
+                pattern: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+                description: Flight start date with 'YYYY-MM-DD' format (e.g. 2003-10-31)
+              landingDate:
+                type: string
+                format: date
+                pattern: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+                description: Flight end date with 'YYYY-MM-DD' format (e.g. 2022-10-31)
+              boxIDs:
+                type: array
+                items:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                description: The array of box IDs which are on the flight.
+                minItems: 1
+              totalWeight:
+                type: string
+                description: Total weigth of boxes on the flight.
+              isCompleted:
+                type: boolean
+                description: Is flight completed. true or false.
+    responses:
+      200:
+        description: Success
+      400:
+        description: Bad Request
+      404:
+        description: Not Found
+      500:
+        description: Server Error
+  /flight/{id}:
+    get:
+      tags:
+        - Flight
+      summary: Get a flight by its id.
+      operationId: getFlight
+      description: An API endpoint for getting a flight by its Mongo ObjectID.
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 12345678901234567890
+          description: Mongo ObjectId
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - Flight
+      summary: Delete a flight by its id.
+      operationId: deleteFlight
+      description: An API endpoint for deleting a flight by its Mongo ObjectID.
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 12345678901234567890
+          description: Mongo ObjectId
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+  /phone:
+    post:
+      tags:
+        - Phone
+      summary: Create Phone
+      description: Create Phone by admin
+      operationId: createPhone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                countryCodeID:
+                  type: string
+                  description: Phone id
+                  example: 637218138b91809ad1c766fa
+                  required: true
+                operatorCodeID:
+                  type: string
+                  description: Operator Code id
+                  example: 6372298f4350c5f8b180263a
+                  required: true
+                number:
+                  type: number
+                  description: Phone Number
+                  example: 2129136
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error or Data duplicated
+    patch:
+      tags:
+        - Phone
+      summary: Update Phone
+      description: Update Phone by admin
+      operationId: updatePhone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Phone id
+                  example: 637218138b91809ad1c766fa
+                  required: true
+                countryCodeID:
+                  type: string
+                  description: Country id
+                  example: 637218138b91809ad1c766fa
+                operatorCodeID:
+                  type: string
+                  description: Operator Code id
+                  example: 6372298f4350c5f8b180263a
+                number:
+                  type: number
+                  description: Phone Number
+                  example: 2129136
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - Phone
+      summary: Get Phones
+      description: Phones list
+      operationId: getPhones
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /phone/{id}:
+    get:
+      tags:
+        - Phone
+      summary: Get Phone by id
+      description: Get Phone by id
+      operationId: getPhone
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - Phone
+      summary: Remove Phone
+      description: Remove Phone
+      operationId: deletePhone
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /phone/country/code:
+    post:
+      tags:
+        - Phone Country Code
+      summary: Create Phone Country Code
+      description: Create Phone Country code by admin
+      operationId: createPhone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: number
+                  description: Phone Country Code
+                  example: 994
+                  required: true
+                countryID:
+                  type: string
+                  description: Country id
+                  example: 6372298f4350c5f8b180263a
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error or Data duplicated
+    patch:
+      tags:
+        - Phone Country Code
+      summary: Update Phone Country Code
+      description: Update Phone Country Code by admin
+      operationId: updatePhoneCountryCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Phone id
+                  example: 637218138b91809ad1c766fa
+                  required: true
+                code:
+                  type: number
+                  description: Phone Country Code
+                  example: 994
+                countryID:
+                  type: string
+                  description: Country id
+                  example: 6372298f4350c5f8b180263a
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - Phone Country Code
+      summary: Get  Phone Country Codes
+      description: Phone Country Code list
+      operationId: getPhoneCountryCode
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /phone/country/{id}/code:
+    get:
+      tags:
+        - Phone Country Code
+      summary: Get Phone Country Code by id
+      description: Get Phone Country Code by id
+      operationId: getPhoneCountryCode
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - Phone Country Code
+      summary: Remove Phone Country Code
+      description: Remove Phone Country Code
+      operationId: deletePhoneCountryCode
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /phone/operator/code:
+    post:
+      tags:
+        - Phone Operator Code
+      summary: Create Phone Operator Code
+      description: Create Phone Operator Code by admin
+      operationId: createPhoneOperatorCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: number
+                  description: Phone Operator Code
+                  example: 994
+                  required: true
+                countryID:
+                  type: string
+                  description: Country id
+                  example: 6372298f4350c5f8b180263a
+                  required: true
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error or Data duplicated
+    patch:
+      tags:
+        - Phone Operator Code
+      summary: Update Phone Operator Code
+      description: Update Phone Operator Code by admin
+      operationId: updatePhoneOperatorCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Phone id
+                  example: 637218138b91809ad1c766fa
+                  required: true
+                code:
+                  type: number
+                  description: Phone Operator Code
+                  example: 994
+                countryID:
+                  type: string
+                  description: Country id
+                  example: 6372298f4350c5f8b180263a
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - Phone Operator Code
+      summary: Get  Phone Operator Codes
+      description: Phone Operator Code list
+      operationId: getPhoneOperatorCodes
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /phone/operator/{id}/code:
+    get:
+      tags:
+        - Phone Operator Code
+      summary: Get Phone Operator Code by id
+      description: Get Phone Operator Code by id
+      operationId: getPhoneOperatorCode
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - Phone Operator Code
+      summary: Remove Phone Operator Code
+      description: Remove Phone Operator Code
+      operationId: deletePhoneOperatorCode
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /box:
+    get:
+      tags:
+        - Box
+      summary: Find all boxes
+      description: An API endpoint for getting all the boxes.
+      operationId: getAllBoxes
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    post:
+      tags:
+        - Box
+      summary: Create a new box
+      operationId: createBox
+      description: An API endpoint for creating a new box.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                barcode:
+                  type: string
+                  pattern: '^FEX\d{24}$'
+                  description: The barcode (FEX keyword and 10 digits) of the Box.
+                  required: true
+                ordersID:
+                  type: array
+                  items:
+                    type: string
+                    pattern: "[0-9a-f]{24}"
+                  description: The array of order IDs which are in the box.
+                  minItems: 1
+                  required: true
+                totalWeight:
+                  type: string
+                  description: Total weight of orders in the box.
+                  required: true
+                  example: "12"
+                status:
+                  type: boolean
+                  description: Is box ready. true or false.
+                  required: false
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        409:
+          description: Conflict
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Box
+      summary: Update a box by id
+      operationId: updateBox
+      description: An API endpoint for updating a box.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The MongoID of the box you want to update
+                  required: true
+                ordersID:
+                  type: array
+                  items:
+                    type: string
+                    pattern: "[0-9a-f]{24}"
+                  description: The array of order IDs which are in the box.
+                  minItems: 1
+                  required: false
+                totalWeight:
+                  type: string
+                  description: Total weight of orders in the box.
+                  required: false
+                  example: "12"
+                status:
+                  type: boolean
+                  description: Is box ready. true or false.
+                  required: false
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /box/{id}:
+    get:
+      tags:
+        - Box
+      summary: Get a Box by id
+      description: An API endpoint for getting a box by MongoID
+      operationId: getBox
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - Box
+      summary: Delete a Box by id
+      description: An API endpoint for deleting a box by MongoID
+      operationId: deleteBox
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /order:
+    get:
+      tags:
+        - Order
+      summary: Find all orders
+      description: An API endpoint for getting all the orders.
+      operationId: getAllOrders
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    post:
+      tags:
+        - Order
+      summary: Create an order
+      description: An API endpoint for creating a new order.
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                customerID:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo Id of the customer who owns the order.
+                  required: true
+                localBranchID:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The id of the local branch.
+                  required: true
+                foreignBranchID:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  desription: The id of the foreign branch.
+                  required: true
+                trackingNumber:
+                  type: string
+                  pattern: '^FEX\d{10}'
+                  description: Tracking number of the cargo campaign.
+                  required: true
+                productName:
+                  type: string
+                  description: Name of the product.
+                  required: true
+                shop:
+                  type: string
+                  description: Name of the shop.
+                  required: true
+                quantity:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  description: Quantity of the product.
+                  required: true
+                shopTrackingNumber:
+                  type: string
+                  description: Tracking number of the seller shop.
+                  required: true
+                invoicePrice:
+                  type: integer
+                  format: float
+                  description: Price of the product.
+                  required: true
+                deliveryPrice:
+                  type: integer
+                  description: Cargo delivery price.
+                  required: false
+                paymentMethod:
+                  type: string
+                  enum: [ CARD, CASH ]
+                  description: Payment method of the order delivery price.
+                  required: false
+                totalPrice:
+                  type: integer
+                  format: float
+                  description: Total of invoice prices.
+                  required: true
+                isCustomsApproved:
+                  type: boolean
+                  description: Is order approved in smart customs?
+                  required: false
+                deliveryDate:
+                  type: string
+                  format: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+                  description: The date when the order was delivered.
+                  required: false
+                status:
+                  type: string
+                  enum:
+                    [ PREPARING, ON_WAY, FOREIGN_BRANCH, LOCAL_BRANCH, FORBIDDEN ]
+                  required: false
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Order
+      summary: Update a order by Id
+      operationId: updateOrder
+      description: An API endpoint for updating an order.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo ID of the order you want to update.
+                  required: true
+                trackingNumber:
+                  type: string
+                  pattern: '^FEX\d{10}'
+                  description: Tracking number of the cargo campaign.
+                productName:
+                  type: string
+                  description: Name of the product.
+                shop:
+                  type: string
+                  description: Name of the shop.
+                quantity:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  description: Quantity of the product.
+                shopTrackingNumber:
+                  type: string
+                  description: Tracking number of the seller shop.
+                invoicePrice:
+                  type: integer
+                  format: float
+                  description: Price of the product.
+                deliveryPrice:
+                  type: integer
+                  description: Cargo delivery price.
+                paymentMethod:
+                  type: string
+                  enum: [ CARD, CASH ]
+                  description: Payment method of the order delivery price.
+                totalPrice:
+                  type: integer
+                  format: float
+                  description: Total of invoice prices.
+                isCustomsApproved:
+                  type: boolean
+                  description: Is order approved in smart customs?
+                deliveryDate:
+                  type: string
+                  format: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+                  description: The date when the order was delivered.
+                status:
+                  type: string
+                  enum:
+                    [ PREPARING, ON_WAY, FOREIGN_BRANCH, LOCAL_BRANCH, FORBIDDEN ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /order/{id}:
+    get:
+      tags:
+        - Order
+      summary: Get an order by Id
+      description: An API endpoint for getting an order by MongoID
+      operationId: getOrder
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - Order
+      summary: Delete an order by id
+      description: An API endpoint for deleting an order by MongoID
+      operationId: deleteOrder
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /cl/service:
+    get:
+      tags:
+        - ClService
+      summary: Find all clService
+      description: An API endpoint for getting all the clService.
+      operationId: getAllClService
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    post:
+      tags:
+        - ClService
+      summary: Create an clService
+      description: An API endpoint for creating a new ClService.
+      operationId: createClService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                  description: title of the ClService.
+                  required: true
+                content:
+                  type: string
+                  description: content of the ClService.
+                  required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - ClService
+      summary: Update a clService by Id
+      operationId: updateclService
+      description: An API endpoint for updating an clService.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo ID of the clService you want to update.
+                  required: true
+                title:
+                  type: string
+                  description: title of the ClService.
+                content:
+                  type: string
+                  description: content of the ClService.
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /cl/service/{id}:
+    get:
+      tags:
+        - ClService
+      summary: Get an clService by Id
+      description: An API endpoint for getting an clService by MongoID
+      operationId: getClService
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - ClService
+      summary: Delete an clService by id
+      description: An API endpoint for deleting an clService by MongoID
+      operationId: deleteClService
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /shop:
+    post:
+      tags:
+        - Shop
+      summary: Create Shop
+      description: Create Shop
+      operationId: createShop
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Country name
+                  example: Azerbaijan
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error or Data duplicated
+    patch:
+      tags:
+        - Shop
+      summary: Update Shop
+      description: Update Shop
+      operationId: updateShop
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Shop id
+                  example: 636ccec461517dc1434ad70c
+                  required: true
+                title:
+                  type: string
+                  description: Country name
+                  example: Azerbaijan
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - Shop
+      summary: Get Shops
+      description: Shops list
+      operationId: getShop
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /shop/{id}:
+    delete:
+      tags:
+        - Shop
+      summary: Delete Shop
+      description: Delete Shop status.
+      operationId: DeleteShop
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        503:
+          description: Service Unavailable
+    get:
+      tags:
+        - Shop
+      summary: Get Shop by id
+      description: Get Shop by id
+      operationId: getShop
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /customer/balance:
+    get:
+      tags:
+        - CustomerBalance
+      summary: Find all customerBalance
+      description: An API endpoint for getting all the customerBalances.
+      operationId: getAllCustomerBalance
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    post:
+      tags:
+        - CustomerBalance
+      summary: Create an customerBalance
+      description: An API endpoint for creating a new customerBalance.
+      operationId: createCustomerBalance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                customerID:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo Id of the customer who owns the order.
+                  required: true
+                amount:
+                  type: number
+                  description: Amount of the CustomerBalance.
+                  required: true
+                status:
+                  type: boolean
+                  description: CustomerBalance status. true or false.
+                  required: false
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - CustomerBalance
+      summary: Update a customerBalance by Id
+      operationId: updateCustomerBalance
+      description: An API endpoint for updating an customerBalance.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo ID of the customerBalance you want to update.
+                  required: true
+                amount:
+                  type: number
+                  description: Amount of the CustomerBalance.
+                  required: true
+                status:
+                  type: boolean
+                  description: CustomerBalance status. true or false.
+                  required: false
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /customer/balance/{id}:
+    get:
+      tags:
+        - CustomerBalance
+      summary: Get an customerBalance by Id
+      description: An API endpoint for getting an customerBalance by MongoID
+      operationId: getCustomerBalance
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - CustomerBalance
+      summary: Delete an customerBalance by id
+      description: An API endpoint for deleting an customerBalance by MongoID
+      operationId: deleteCustomerBalance
+      parameters:
+        - name: id
+          in: path
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /tariff:
+    get:
+      tags:
+        - Tariff
+      summary: Find all tariffs
+      description: An API endpoint for getting all tariffs.
+      operationId: getAllTariffs
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    post:
+      tags:
+        - Tariff
+      summary: Create a tariff
+      description: An API endpoint for creating a new tariff.
+      operationId: createTariff
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                minWeight:
+                  type: number
+                  format: int32
+                  description: From what weight is the tariff applied.
+                  required: true
+                maxWeight:
+                  type: number
+                  format: int32
+                  description: Max weight that the tariff is applied.
+                  required: true
+                volume:
+                  type: number
+                  format: int32
+                  description: Volume of the box. (Volume = Length * Width * Height)
+                  required: true
+                price:
+                  type: number
+                  format: int32
+                  description: Price of the tariff in the given weight range.
+                  required: true
+                type:
+                  type: string
+                  enum: [STANDART, LIQUID]
+                  default: STANDART
+                  description: The type of the products in the box. (STANDART/LIQUID)
+                  required: true
+                country:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The country id where the tariff is applied to.
+                  required: true
+      responses:
+        201:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Tariff
+      summary: Update a tariff
+      description: An API endpoint for updating a tariff with given id.
+      operationId: updateTariff
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The Mongo Id of the tariff you want to update.
+                  required: true
+                minWeight:
+                  type: number
+                  format: int32
+                  description: From what weight is the tariff applied (grams).
+                maxWeight:
+                  type: number
+                  format: int32
+                  description: Max weight that the tariff is applied (grams).
+                volume:
+                  type: number
+                  format: int32
+                  description: Volume of the box. (Volume = Length * Width * Height)
+                price:
+                  type: number
+                  format: int32
+                  description: Price of the tariff in the given weight range.
+                type:
+                  type: string
+                  enum: [ STANDART, LIQUID ]
+                  default: STANDART
+                  description: The type of the products in the box. (STANDART/LIQUID)
+                country:
+                  type: string
+                  pattern: "[0-9a-f]{24}"
+                  description: The country id where the tariff is applied to.
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+  /tariff/{id}:
+    get:
+      tags:
+        - Tariff
+      summary: Get an tariff by Id
+      description: An API endpoint for getting an tariff by MongoID
+      operationId: getTariff
+      parameters:
+        - name: id
+          in: path
+          type: string
+          pattern: "[0-9a-f]{24}"
+          description: The Mongo Id of the tariff you want to get.
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Tariff
+      summary: Delete the tariff
+      description: An API endpoint for updating the status of tariff with the given id to false.
+      parameters:
+        - name: id
+          in: path
+          type: string
+          pattern: "[0-9a-f]{24}"
+          description: The Mongo Id of the tariff you want to "delete".
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+        503:
+          description: Service Unavailable
+
+  /forbbiddenProduct:
+    post:
+      tags:
+        - Forbidden Product
+      summary: Create Forbidden Product
+      description: Create Forbidden Product
+      operationId: createForbiddenProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: Forbidden Product Name
+                  example: gas cylinder
+        required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description:  Server error or Data duplicated
+    patch:
+      tags:
+        - Forbidden Product
+      summary: Update Forbidden Product
+      description: Update Forbidden Product
+      operationId: updateForbiddenProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Forbidden Product id
+                  example: 636ccec461517dc1434ad70c
+                  required: true
+                content:
+                  type: string
+                  description: Update Forbidden Product
+                  example: gas cylinder
+      responses:
+        201:
+          description: Updated
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server error
+    get:
+      tags:
+        - Forbidden Product
+      summary: Get Forbidden Products
+      description: Forbidden Product list
+      operationId: getForbiddenProduct
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /forbbiddenProduct/{id}:
+    delete:
+      tags:
+        - Forbidden Product
+      summary: Delete Forbidden Product
+      description: Delete Forbidden Product status.
+      operationId: DeleteForbiddenProduct
+      parameters:
+        - name: id
+          in: path
+          type: string
+          example: 636ccec461517dc1434ad70c
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        503:
+          description: Service Unavailable
+    get:
+      tags:
+        - Forbidden Product
+      summary: Get Forbidden Product by id
+      description: Get Forbidden Product by id
+      operationId: getForbiddenProduct
+      parameters:
+          - name: id
+            in: path
+            type: string
+            example: 636ccec461517dc1434ad70c
+            required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        500:
+          description: Server Error
+  /role:
+    get:
+      tags:
+        - Role
+      summary: Get all roles.
+      operationId: getRoles
+      description: An API endpoint for getting all roles.
+      responses:
+        200:
+          description: Success
+        204:
+          description: No content
+        500:
+          description: Server Error
+    post:
+      tags:
+        - Role
+      summary: Create a new role.
+      operationId: createRole
+      description: An API endpoint for creating a new role.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: Name of the role.
+                  required: true
+                privileges:
+                  type: array
+                  items:
+                    type: string
+                    pattern: '[0-9a-f]{24}'
+                  description: ObjectIDs of the privileges that belongs to the role you want to create.
+                  required: false
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Role
+      summary: Update the role.
+      operationId: updateRole
+      description: An API endpoint for updating the role.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                  pattern: '[0-9a-f]{24}'
+                  description: The ObjectId of the role you want to update.
+                  required: true
+                name:
+                  type: string
+                  description: Name of the role.
+                  required: false
+                privileges:
+                  type: array
+                  items:
+                    type: string
+                    pattern: '[0-9a-f]{24}'
+                  description: ObjectIDs of the privileges that belongs to the role you want to create.
+                  required: false
+      responses:
+        200:
+          description: Created
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+  /role/{id}:
+    get:
+      tags:
+        - Role
+      summary: Get role by id.
+      operationId: getRole
+      description: An API endpoint for getting the role by id.
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        414:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Role
+      summary: Delete role
+      operationId: deleteRole
+      description: Update the role's status field to false.
+      parameters:
+        - name: id
+          in: path
+          type: string
+          pattern: '[0-9a-f]{24}'
+          description: Mongo ObjectId
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+  /privilege:
+    get:
+      tags:
+        - Privilege
+      summary: Get all privileges.
+      operationId: getPrivileges
+      description: An API endpoint for getting all privileges.
+      responses:
+        200:
+          description: Success
+        204:
+          description: No content
+        500:
+          description: Server Error
+    post:
+      tags:
+        - Privilege
+      summary: Create a new privilege.
+      operationId: createPrivilege
+      description: An API endpoint for creating a new privilege.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: Name of the privilege.
+                  required: true
+                privileges:
+                  type: string
+                  description: Code of the privilege.
+                  required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Privilege
+      summary: Update the privilege.
+      operationId: updatePrivilege
+      description: An API endpoint for updating the privilege.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: string
+                  pattern: '[0-9a-f]{24}'
+                  description: The ObjectId of the privilege you want to update.
+                  required: true
+                name:
+                  type: string
+                  description: Name of the privilege.
+                  required: false
+                privileges:
+                  type: string
+                  description: Code of the privilege.
+                  required: false
+      responses:
+        200:
+          description: Created
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+  /privilege/{id}:
+    get:
+      tags:
+        - Privilege
+      summary: Get privilege by id.
+      operationId: getPrivilege
+      description: An API endpoint for getting the privilege by id.
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        414:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - Privilege
+      summary: Delete privilege
+      operationId: deleteRPrivilege
+      description: Update the privilege's status field to false.
+      parameters:
+        - name: id
+          in: path
+          type: string
+          pattern: '[0-9a-f]{24}'
+          description: Mongo ObjectId
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+  /user/agreement:
+    get:
+      tags:
+        - User Agreement
+      summary: Get all User Agreements.
+      operationId: getUserAgreement
+      description: An API endpoint for getting all User Agreements.
+      responses:
+        200:
+          description: Success
+        204:
+          description: No content
+        500:
+          description: Server Error
+    post:
+      tags:
+        - User Agreement
+      summary: Create a new user agreement.
+      operationId: createUserAgreement
+      description: An API endpoint for creating a new user agreement.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                content:
+                  type: array
+                  description: Content of the user agreement.
+                  example:
+                    [
+                      {
+                        "id": "sheNwCUP5A",
+                        "type": "header",
+                        "data": { "text": "Editor.js", "level": 2 },
+                      },
+                    ]
+                  required: true
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - User Agreement
+      summary: Update the user agreement.
+      operationId: updateUserAgreement
+      description: An API endpoint for updating the user agreement.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                content:
+                  type: array
+                  description: content of the user agreement.
+                  example:
+                    [
+                      {
+                        "id": "sheNwCUP5A",
+                        "type": "header",
+                        "data": { "text": "Editor.js", "level": 4 },
+                      },
+                    ]
+                  required: false
+      responses:
+        200:
+          description: Created
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error
+  /user/agreement/{id}:
+    get:
+      tags:
+        - User Agreement
+      summary: Get user agreement by id.
+      operationId: getUserAgreement
+      description: An API endpoint for getting the user agreement by id.
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        414:
+          description: Validation Error
+        500:
+          description: Server Error
+    patch:
+      tags:
+        - User Agreement
+      summary: Delete user agreement
+      operationId: deleteRPrivilege
+      description: Update the user agreement's status field to false.
+      parameters:
+        - name: id
+          in: path
+          type: string
+          pattern: "[0-9a-f]{24}"
+          description: Mongo ObjectId
+          required: true
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        412:
+          description: Validation Error
+        500:
+          description: Server Error

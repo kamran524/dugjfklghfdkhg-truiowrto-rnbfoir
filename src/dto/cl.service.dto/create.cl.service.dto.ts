@@ -1,0 +1,14 @@
+import {
+    IsNotEmpty, IsString,
+  } from "class-validator";
+  
+  
+  export class CreateClServiceDto{
+    @IsNotEmpty()
+    @IsString()
+    title:string;
+  
+    @IsNotEmpty()
+    @IsString()
+    content:string;
+  }

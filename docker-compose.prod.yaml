@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  node-app:
+    build:
+     context: .
+     args:
+      - NODE_ENV=production
+    env_file:
+       - ".env.development"
+    environment:
+      - NODE_ENV=production
+      - MONGO_USERNAME=ilkin
+      - MONGO_PASSWORD=ilkin123456

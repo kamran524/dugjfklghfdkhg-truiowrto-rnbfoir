@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  node-app:
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    env_file:
+      - "./.env.development"
+    volumes:
+      - ./:/Fex_Cargo
+      - /Fex_Cargo/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGO_USERNAME=ilkin
+      - MONGO_PASSWORD=ilkin123456
+    command: npm run start:dev

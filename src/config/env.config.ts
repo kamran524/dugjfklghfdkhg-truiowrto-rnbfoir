@@ -1,0 +1,36 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
+export default {
+  NODE_ENV: process.env.NODE_ENV,
+
+  PORT: process.env.PORT || 3001,
+  MONGO_USER: process.env.MONGO_USERNAME,
+  MONGO_PW: process.env.MONGO_PASSWORD,
+  MONGO_HOST: process.env.MONGO_HOST || "mongo",
+
+  REDIS_HOST: process.env.REDIS_HOST || "redis",
+
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: process.env.SMTP_PORT || 465,
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PW: process.env.SMTP_PW,
+  TELEGRAM_BOT_ID: process.env.TELEGRAM_BOT_ID,
+  TELEGRAM_USER_CHAT_ID:process.env.TELEGRAM_USER_CHAT_ID,
+  
+  JWT_ACCESS: process.env.JWT_ACCESS,
+  JWT_REFRESH:process.env.JWT_REFRESH,
+  JWT_VALIDATE:process.env.JWT_VALIDATE,
+
+  URL : process.env.URL,
+
+  KAPITAL_BANK_MERCHANT: process.env.KAPITAL_BANK_MERCHANT,
+  KAPITAL_BANK_CURRENCY_AZE: process.env.KAPITAL_BANK_CURRENCY_AZE,
+  KAPITAL_BANK_CRT: process.env.KAPITAL_BANK_CRT,
+  KAPITAL_BANK_API: process.env.KAPITAL_BANK_API,
+  KAPITAL_BANK_MERCHANT_KEY: process.env.KAPITAL_BANK_MERCHANT_KEY,
+  KAPITAL_BANK_PORT:process.env.KAPITAL_BANK_PORT,
+  KAPITAL_BANK_APPROVE_PATH: process.env.KAPITAL_BANK_APPROVE_PATH,
+  KAPITAL_BANK_CANCEL_PATH: process.env.KAPITAL_BANK_CANCEL_PATH,
+  KAPITAL_BANK_DECLINE_PATH: process.env.KAPITAL_BANK_DECLINE_PATH
+}
